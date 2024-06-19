@@ -50,13 +50,13 @@ const List = () => {
         type: "change_page",
         page: 1,
       });
-      notification.success({ message: "Orden eliminada" });
+      notification.success({ message: "Diagnostico eliminado" });
     });
   };
 
   const columns = [
     {
-      title: "Ordenes",
+      title: "Diagnosticos",
       render: (x) => (
         <Row align={`middle`}>
           <Col span={24} style={{ marginBottom: `3px` }}>

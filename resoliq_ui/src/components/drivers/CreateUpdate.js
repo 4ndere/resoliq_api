@@ -39,7 +39,7 @@ const CreateUpdate = () => {
         const errorList = Object.keys(errors).map((key) => errors[key]);
         Modal.error({
           title:
-            "Errores al crear el nuevo conductor, revisa tus datos ingresados.",
+            "Errores al crear el nuevo Punto, revisa tus datos ingresados.",
           content: (
             <ul>
               {errorList.map((error) => (
@@ -61,14 +61,14 @@ const CreateUpdate = () => {
         dispatch({ type: "select_to_edit", payload: { driver: null } });
         form.resetFields();
         notification.success({
-          message: "Conductor actualizado correctamente.",
+          message: "Punto actualizado correctamente.",
         });
       })
       .catch((e) => {
         const errors = e.response.data;
         const errorList = Object.keys(errors).map((key) => errors[key]);
         Modal.error({
-          title: "Errores al actualizar el conductor.",
+          title: "Errores al actualizar el punto.",
           content: (
             <ul>
               {errorList.map((error) => (
@@ -103,7 +103,7 @@ const CreateUpdate = () => {
             <Tag color="blue">{state.select_to_edit.name}</Tag>
           </>
         ) : (
-          "Crear nuevo conductor"
+          "Crear nuevo Punto"
         )
       }
     >

@@ -24,7 +24,7 @@ const Orders = () => {
       <Row style={{ marginBottom: "10px" }}>
         <Col span={24} style={{ textAlign: "left" }}>
           <Tag>
-            <b>/ ORDENES</b>
+            <b>/ DIAGNOSTICOS</b>
           </Tag>
         </Col>
       </Row>

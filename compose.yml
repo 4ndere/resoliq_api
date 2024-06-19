@@ -26,12 +26,3 @@ services:
       - .:/code
     ports:
       - "8000:8000"
-
-  react:
-    build: ./resoliq_ui
-    image: ui
-    ports:
-      - "4200:80"
-    depends_on:
-      - django
-      - postgres

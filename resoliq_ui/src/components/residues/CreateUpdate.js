@@ -140,7 +140,7 @@ const CreateUpdate = () => {
             )}
           </>
         ) : (
-          "Crear nuevo residuo"
+          "Crear nuevo diagnostico"
         )
       }
     >
@@ -154,14 +154,14 @@ const CreateUpdate = () => {
         {!state.add_quantity && !state.sus_quantity && (
           <>
             <Form.Item
-              label="Nombre"
+              label="Punto"
               name="name"
               rules={[{ required: true, message: "Ingresa el nombre" }]}
             >
               <Input />
             </Form.Item>
             <Form.Item
-              label="Medida"
+              label="Descripción"
               name="type_medition"
               rules={[{ required: true, message: "Ingresa la medida" }]}
             >

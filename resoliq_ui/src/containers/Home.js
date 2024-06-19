@@ -35,14 +35,6 @@ const Home = () => {
                 style={{ marginBottom: "10px" }}
                 onClick={() => setOption(1)}
               >
-                Residuos
-              </Button>
-              <Button
-                type="primary"
-                block={true}
-                style={{ marginBottom: "10px" }}
-                onClick={() => setOption(2)}
-              >
                 Clientes
               </Button>
               <Button
@@ -51,7 +43,7 @@ const Home = () => {
                 style={{ marginBottom: "10px" }}
                 onClick={() => setOption(3)}
               >
-                Conductores
+                Puntos
               </Button>
               <Button
                 type="primary"
@@ -59,7 +51,7 @@ const Home = () => {
                 style={{ marginBottom: "10px" }}
                 onClick={() => setOption(4)}
               >
-                Ordenes
+                Diagnosticos
               </Button>
             </Col>
           </Row>

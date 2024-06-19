@@ -40,7 +40,7 @@ const List = () => {
         type: "change_page",
         page: 1,
       });
-      notification.success({ message: "Residuo eliminado" });
+      notification.success({ message: "Diagnostico eliminado" });
     });
   };
 
@@ -204,7 +204,7 @@ const List = () => {
                                           <>
                                             {user.type_user === `ADM`
                                               ? `Administrador`
-                                              : `Bodega`}
+                                              : `Encargado`}
                                           </>
                                         )}
                                       </Col>
@@ -312,7 +312,7 @@ const List = () => {
       title={() => (
         <Row justify={"space-between"}>
           <Col>
-            <b>Residuos registrados: {state.list.count}</b>
+            <b>Diagnosticos existentes: {state.list.count}</b>
           </Col>
           <Col>
             <Button

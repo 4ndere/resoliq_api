@@ -37,7 +37,7 @@ const List = () => {
         type: "change_page",
         page: 1,
       });
-      notification.success({ message: "Conductor eliminado" });
+      notification.success({ message: "Punto eliminado" });
     });
   };
 
@@ -128,7 +128,7 @@ const List = () => {
     // Aplicar estilo a la primera fila
     applyStyles(worksheet, "A1:Z1", headerStyle);
 
-    XLSX.writeFile(workbook, `listado_conductores.xlsx`);
+    XLSX.writeFile(workbook, `listado_puntos.xlsx`);
   };
 
   const columns = [
@@ -136,16 +136,14 @@ const List = () => {
       title: "Nombre",
       dataIndex: "name",
     },
-    { title: `Rut`, dataIndex: `dni` },
-    { title: `Telefono`, dataIndex: `phone_number` },
-    { title: `Patente`, dataIndex: `vehicle_plate` },
+    { title: `Cliente`, dataIndex: `dni` },
     {
       width: "35%",
       render: (x) => (
         <Row justify={"space-between"}>
           <Col span={12}>
             <Popconfirm
-              title={"Estas seguro de eliminar el conductor?"}
+              title={"¿Estas seguro de eliminar el punto?"}
               onConfirm={() => deleteDriver(x)}
             >
               <Button
@@ -185,7 +183,7 @@ const List = () => {
       title={() => (
         <Row justify={"space-between"}>
           <Col>
-            <b>Conductores registrados: {state.list.count}</b>
+            <b>Puntos de captación registrados: {state.list.count}</b>
           </Col>
           <Col>
             <Button

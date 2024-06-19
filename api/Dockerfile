@@ -24,6 +24,6 @@ ADD . /code/
 
 
 # Run script file.
-CMD ["python3", "./manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python3", "./manage.py", "runserver", "localhost:8000"]
 
 

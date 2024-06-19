@@ -282,7 +282,7 @@ const CreateUpdate = () => {
             <Tag color="blue">{state.select_to_edit.id}</Tag>
           </>
         ) : (
-          "Crear nueva orden"
+          "Crear nuevo diagnostico"
         )
       }
     >
@@ -321,14 +321,11 @@ const CreateUpdate = () => {
           </Select>
         </Form.Item>
         <Form.Item
-          label="Conductor"
+          label="Punto de Captación"
           name="driver"
-          rules={[{ required: true, message: "Selecciona un conductor" }]}
+          rules={[{ required: true, message: "Selecciona un punto" }]}
         >
-          <Select
-            placeholder={`Selecciona un conductor`}
-            style={{ width: `100%` }}
-          >
+          <Select placeholder={`Selecciona un punto`} style={{ width: `100%` }}>
             {drivers.map((driver) => (
               <Select.Option key={driver.id} value={driver.id}>
                 {driver.name} - {driver.vehicle_plate}
@@ -337,139 +334,6 @@ const CreateUpdate = () => {
           </Select>
         </Form.Item>
         <hr />
-
-        <div>
-          <Row justify={`space-around`}>
-            <Select
-              size="small"
-              placeholder={`Selecciona un residuo`}
-              style={{ width: `185px` }}
-              defaultValue={
-                listPreSelect.residue ? listPreSelect.residue.id : null
-              }
-              onChange={(e) => {
-                const residue = residues.find((residue) => residue.id === e);
-                setListPreSelect({
-                  ...listPreSelect,
-                  residue: residue,
-                });
-              }}
-              value={
-                listPreSelect.residue ? listPreSelect.residue.id : undefined
-              }
-            >
-              {residues.map((residue) => (
-                <Select.Option key={residue.id} value={residue.id}>
-                  {residue.name} ({residue.quantity} {residue.type_medition})
-                </Select.Option>
-              ))}
-            </Select>
-            <Input
-              type={`number`}
-              placeholder="0"
-              size="small"
-              style={{ width: `70px`, height: `26px` }}
-              defaultValue={listPreSelect.quantity ? listPreSelect.quantity : 0}
-              value={listPreSelect.quantity ? listPreSelect.quantity : 0}
-              onChange={(e) => {
-                setListPreSelect({
-                  ...listPreSelect,
-                  quantity: parseInt(e.target.value),
-                });
-              }}
-            />
-            <Button
-              icon={<PlusCircleOutlined />}
-              type={`primary`}
-              disabled={state.select_to_edit ? true : false}
-              onClick={() => {
-                if (
-                  !listPreSelect.residue ||
-                  listPreSelect.quantity === 0 ||
-                  !listPreSelect.quantity
-                ) {
-                  notification.error({
-                    message: "Error al agregar residuo",
-                    description: "Selecciona un residuo y una cantidad",
-                  });
-                } else {
-                  setDetailResiduals([...detailResiduals, listPreSelect]);
-                  setListPreSelect({});
-                }
-              }}
-              size={`small`}
-              style={{
-                float: `right`,
-                marginTop: `5px`,
-                marginBottom: `10px`,
-              }}
-            ></Button>
-            <Col span={24}>
-              <Row>
-                {detailResiduals.map((residual, index) => {
-                  return (
-                    <>
-                      <Col
-                        span={13}
-                        style={{ textAlign: `left`, textIndent: `10px` }}
-                      >
-                        {index + 1}){residual.residue.name}
-                      </Col>
-                      <Col span={6}>{residual.quantity}</Col>
-                      {!state.select_to_edit && (
-                        <Col span={5}>
-                          <Button
-                            type="danger"
-                            size="small"
-                            disabled={state.select_to_edit ? true : false}
-                            icon={<DeleteOutlined />}
-                            onClick={() => {
-                              const updatedResiduals = detailResiduals.filter(
-                                (item, i) => i !== index
-                              );
-                              setDetailResiduals(updatedResiduals);
-                            }}
-                          />
-                        </Col>
-                      )}
-                    </>
-                  );
-                })}
-                <Col span={24}>
-                  <hr />
-                </Col>
-                <Col span={13}>CANTIDAD TOTAL </Col>
-
-                <Col span={6}>
-                  <b>
-                    {detailResiduals.reduce(
-                      (acc, cur) => acc + parseInt(cur.quantity),
-                      0
-                    )}
-                  </b>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-        </div>
-        <hr />
-        <Form.Item
-          label="Reposicion"
-          name="is_reposition"
-          rules={[{ required: true, message: "Selecciona una opcion" }]}
-        >
-          <Select
-            placeholder={`Selecciona una opcion`}
-            style={{ width: `100%` }}
-          >
-            <Select.Option key={`1`} value={true}>
-              SI
-            </Select.Option>
-            <Select.Option key={`2`} value={false}>
-              NO
-            </Select.Option>
-          </Select>
-        </Form.Item>
         <Form.Item label="Observaciones" name="observation">
           <Input.TextArea placeholder="Describe..." />
         </Form.Item>
