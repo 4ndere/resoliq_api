@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { Table, Button, Row, Col, Popconfirm, notification } from "antd";
 import api from "../../api/endpoints";
-import { DriversContext } from "../../containers/DriversTrucks";
+import { ClientsContext } from "../../containers/Clients";
 import {
   DeleteFilled,
   RightCircleFilled,
@@ -10,26 +10,26 @@ import {
 import * as XLSX from "xlsx";
 
 const List = () => {
-  const { state, dispatch } = useContext(DriversContext);
+  const { state, dispatch } = useContext(ClientsContext);
 
-  async function getDrivers() {
-    await api.drivers.list(state.list.page).then((x) => {
+  async function getClients() {
+    await api.clients.list(state.list.page).then((x) => {
       dispatch({
-        type: "add_drivers",
+        type: "add_clients",
         payload: x,
       });
     });
   }
 
-  const selectDriver = (driver) => {
+  const selectClient = (client) => {
     dispatch({
       type: "select_to_edit",
-      payload: { driver },
+      payload: { client },
     });
   };
 
-  const deleteDriver = async (driver) => {
-    const response = await api.drivers.delete(driver.id).then(() => {
+  const deleteCliennt = async (client) => {
+    const response = await api.clients.delete(client.id).then(() => {
       dispatch({
         type: "update_list",
       });
@@ -37,7 +37,7 @@ const List = () => {
         type: "change_page",
         page: 1,
       });
-      notification.success({ message: "Punto eliminado" });
+      notification.success({ message: "Cliente eliminado" });
     });
   };
 
@@ -48,7 +48,7 @@ const List = () => {
 
     // Función para obtener los datos de una página específica
     const getDataPage = async (page) => {
-      const rq = await api.drivers.list(page);
+      const rq = await api.clients.list(page);
       return rq.results;
     };
 
@@ -69,7 +69,7 @@ const List = () => {
       Nombre: item.name,
       Rut: item.dni,
       Telefono: item.phone_number,
-      Patente: item.vehicle_plate,
+      Email: item.address,
     }));
 
     // Crear el archivo Excel y descargarlo
@@ -136,15 +136,17 @@ const List = () => {
       title: "Nombre",
       dataIndex: "name",
     },
-    { title: `Cliente`, dataIndex: `dni` },
+    { title: `Rut`, dataIndex: `dni` },
+    { title: `Telefono`, dataIndex: `phone_number` },
+    { title: `Email`, dataIndex: `address` },
     {
       width: "35%",
       render: (x) => (
         <Row justify={"space-between"}>
           <Col span={12}>
             <Popconfirm
-              title={"¿Estas seguro de eliminar a este cliente?"}
-              onConfirm={() => deleteDriver(x)}
+              title={"Estas seguro de eliminar el residuo?"}
+              onConfirm={() => deleteCliennt(x)}
             >
               <Button
                 style={{ marginRight: "10px" }}
@@ -161,7 +163,7 @@ const List = () => {
             <Button
               size="small"
               type="primary"
-              onClick={() => selectDriver(x)}
+              onClick={() => selectClient(x)}
               icon={<RightCircleFilled />}
             >
               Editar
@@ -173,7 +175,7 @@ const List = () => {
   ];
 
   useEffect(() => {
-    getDrivers();
+    getClients();
   }, [state.list.countUpdate, state.list.page]);
 
   return (
@@ -183,7 +185,7 @@ const List = () => {
       title={() => (
         <Row justify={"space-between"}>
           <Col>
-            <b>Clientes registrados: {state.list.count}</b>
+            <b>Residuos registrados: {state.list.count}</b>
           </Col>
           <Col>
             <Button

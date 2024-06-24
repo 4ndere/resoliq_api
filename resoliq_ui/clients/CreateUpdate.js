@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Card, Form, Input, Button, Modal, notification, Tag } from "antd";
-import { DriversContext } from "../../containers/DriversTrucks";
+import { ClientsContext } from "../../containers/Clients";
 import {
   PlusCircleFilled,
   ClearOutlined,
@@ -10,14 +10,14 @@ import {
 import api from "../../api/endpoints";
 
 const CreateUpdate = () => {
-  const { state, dispatch } = useContext(DriversContext);
+  const { state, dispatch } = useContext(ClientsContext);
   const [form] = Form.useForm();
 
   function createOrClear() {
     if (state.select_to_edit) {
       dispatch({
         type: "select_to_edit",
-        payload: { driver: null },
+        payload: { client: null },
       });
       form.resetFields();
     } else {
@@ -25,8 +25,8 @@ const CreateUpdate = () => {
     }
   }
 
-  async function createDriver(values) {
-    await api.drivers
+  async function createClient(values) {
+    await api.clients
       .create(values)
       .then(() => {
         dispatch({
@@ -51,24 +51,22 @@ const CreateUpdate = () => {
       });
   }
 
-  async function updateDriver(values) {
-    await api.drivers
+  async function updateClient(values) {
+    await api.clients
       .update(state.select_to_edit.id, values)
       .then(() => {
         dispatch({
           type: "update_list",
         });
-        dispatch({ type: "select_to_edit", payload: { driver: null } });
+        dispatch({ type: "select_to_edit", payload: { client: null } });
         form.resetFields();
-        notification.success({
-          message: "Cliente actualizado correctamente.",
-        });
+        notification.success({ message: "Cliente actualizado correctamente." });
       })
       .catch((e) => {
         const errors = e.response.data;
         const errorList = Object.keys(errors).map((key) => errors[key]);
         Modal.error({
-          title: "Error al actualizar al cliente.",
+          title: "Errores al actualizar el cliente.",
           content: (
             <ul>
               {errorList.map((error) => (
@@ -80,11 +78,11 @@ const CreateUpdate = () => {
       });
   }
 
-  function createOrUpdateDriver(values) {
+  function createOrUpdateClient(values) {
     if (state.select_to_edit) {
-      updateDriver(values);
+      updateClient(values);
     } else {
-      createDriver(values);
+      createClient(values);
     }
   }
 
@@ -103,7 +101,7 @@ const CreateUpdate = () => {
             <Tag color="blue">{state.select_to_edit.name}</Tag>
           </>
         ) : (
-          "Registrar Cliente"
+          "Crear nuevo cliente"
         )
       }
     >
@@ -112,7 +110,7 @@ const CreateUpdate = () => {
         layout="horizontal"
         labelCol={{ span: 8 }}
         labelWrap={true}
-        onFinish={createOrUpdateDriver}
+        onFinish={createOrUpdateClient}
       >
         <Form.Item
           label="Nombre"
@@ -132,7 +130,14 @@ const CreateUpdate = () => {
         <Form.Item
           label="Telefono"
           name="phone_number"
-          rules={[{ required: true, message: "Ingresa la patente" }]}
+          rules={[{ required: true, message: "Ingresa el telefono" }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Email"
+          name="address"
+          rules={[{ required: true, message: "Ingresa el email" }]}
         >
           <Input />
         </Form.Item>

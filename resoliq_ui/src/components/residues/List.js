@@ -40,7 +40,7 @@ const List = () => {
         type: "change_page",
         page: 1,
       });
-      notification.success({ message: "Diagnostico eliminado" });
+      notification.success({ message: "Cliente eliminado" });
     });
   };
 
@@ -202,7 +202,7 @@ const List = () => {
                                       <Col>
                                         {user && (
                                           <>
-                                            {user.type_user === `ADM`
+                                            {user.type_user === `SWR`
                                               ? `Administrador`
                                               : `Encargado`}
                                           </>
@@ -312,7 +312,7 @@ const List = () => {
       title={() => (
         <Row justify={"space-between"}>
           <Col>
-            <b>Diagnosticos existentes: {state.list.count}</b>
+            <b>Puntos de captación existentes: {state.list.count}</b>
           </Col>
           <Col>
             <Button

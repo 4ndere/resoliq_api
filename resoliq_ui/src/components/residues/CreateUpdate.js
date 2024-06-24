@@ -39,7 +39,7 @@ const CreateUpdate = () => {
         const errorList = Object.keys(errors).map((key) => errors[key]);
         Modal.error({
           title:
-            "Errores al crear el nuevo residuo, revisa tus datos ingresados.",
+            "Errores al crear el nuevo punto, revisa tus datos ingresados.",
           content: (
             <ul>
               {errorList.map((error) => (
@@ -81,13 +81,13 @@ const CreateUpdate = () => {
         });
         dispatch({ type: "select_to_edit", payload: { residue: null } });
         form.resetFields();
-        notification.success({ message: "Residuo actualizado correctamente." });
+        notification.success({ message: "Cliente actualizado correctamente." });
       })
       .catch((e) => {
         const errors = e.response.data;
         const errorList = Object.keys(errors).map((key) => errors[key]);
         Modal.error({
-          title: "Errores al actualizar el residuo.",
+          title: "Errores al actualizar al cliente.",
           content: (
             <ul>
               {errorList.map((error) => (
@@ -98,7 +98,7 @@ const CreateUpdate = () => {
         });
       });
     if (values.password) {
-      notification.success({ message: "Residuo actualizado correctamente." });
+      notification.success({ message: "Cliente actualizado correctamente." });
       dispatch({ type: "select_to_edit", payload: { residue: null } });
       form.resetFields();
     }
@@ -140,7 +140,7 @@ const CreateUpdate = () => {
             )}
           </>
         ) : (
-          "Crear nuevo diagnostico"
+          "Crear nuevo punto"
         )
       }
     >

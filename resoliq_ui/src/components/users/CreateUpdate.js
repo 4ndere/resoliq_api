@@ -189,8 +189,8 @@ const CreateUpdate = () => {
           rules={[{ required: true, message: "Selecciona un tipo de usuario" }]}
         >
           <Select placeholder="Selecciona una opción">
-            <Select.Option value="ADM">Administrador</Select.Option>
-            <Select.Option value="BDG">Bodega</Select.Option>
+            <Select.Option value="SWR">Software</Select.Option>
+            <Select.Option value="HWR">Hardware</Select.Option>
           </Select>
         </Form.Item>
         <Form.Item

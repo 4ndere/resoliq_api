@@ -35,7 +35,7 @@ const Home = () => {
                 style={{ marginBottom: "10px" }}
                 onClick={() => setOption(1)}
               >
-                Clientes
+                Puntos
               </Button>
               <Button
                 type="primary"
@@ -43,7 +43,7 @@ const Home = () => {
                 style={{ marginBottom: "10px" }}
                 onClick={() => setOption(3)}
               >
-                Puntos
+                Clientes
               </Button>
               <Button
                 type="primary"

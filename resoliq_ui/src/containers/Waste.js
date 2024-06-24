@@ -26,7 +26,7 @@ const Waste = () => {
       <Row align={"middle"} justify={"space-around"}>
         <Col span={24} style={{ textAlign: "left", marginBottom: "10px" }}>
           <Tag>
-            <b>/ DIAGNOSTICOS</b>
+            <b>/ CLIENTES</b>
           </Tag>
         </Col>
 
