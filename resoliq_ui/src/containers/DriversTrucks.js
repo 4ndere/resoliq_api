@@ -23,7 +23,7 @@ const DriversTruck = () => {
       <Row style={{ marginBottom: "10px" }}>
         <Col span={24} style={{ textAlign: "left" }}>
           <Tag>
-            <b>/ POZOS</b>
+            <b>/ CLIENTES</b>
           </Tag>
         </Col>
       </Row>

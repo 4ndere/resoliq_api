@@ -306,29 +306,29 @@ const CreateUpdate = () => {
         </Form.Item>
         <Form.Item
           label="Cliente"
-          name="client"
+          name="driver"
           rules={[{ required: true, message: "Selecciona un cliente" }]}
         >
           <Select
             placeholder={`Selecciona un cliente`}
             style={{ width: `100%` }}
           >
-            {clients.map((client) => (
-              <Select.Option key={client.id} value={client.id}>
-                {client.name}({client.dni})
+            {drivers.map((driver) => (
+              <Select.Option key={driver.id} value={driver.id}>
+                {driver.name}({driver.dni})
               </Select.Option>
             ))}
           </Select>
         </Form.Item>
         <Form.Item
           label="Punto de Captación"
-          name="driver"
+          name="client"
           rules={[{ required: true, message: "Selecciona un punto" }]}
         >
           <Select placeholder={`Selecciona un punto`} style={{ width: `100%` }}>
-            {drivers.map((driver) => (
-              <Select.Option key={driver.id} value={driver.id}>
-                {driver.name} - {driver.vehicle_plate}
+            {clients.map((client) => (
+              <Select.Option key={client.id} value={client.id}>
+                {client.name} - {client.vehicle_plate}
               </Select.Option>
             ))}
           </Select>
